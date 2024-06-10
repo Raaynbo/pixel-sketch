@@ -32,3 +32,10 @@ function hoverTrail(event) {
 
 const cellH = "20px" ;
 createGrid(16,16, cellH, cellH);
+const resetBtn = document.querySelector(".reset_grid");
+resetBtn.addEventListener("click", () => {
+	const allGridCell = document.querySelectorAll(".cell");
+	allGridCell.forEach((cell) => {
+		cell.style.backgroundColor = "white";
+	});
+});
