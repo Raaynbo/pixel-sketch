@@ -10,11 +10,25 @@
 
 <body>
 	<header>
-		bal;ahvbskaqhs
-		<button class="reset_grid">Reset the grid</button>
+		<span class="title">Pixel Sketch</span>
+		<span class="about"> About</span>
 	</header>
 	<main>
 		<div class="grid_container">
+		</div>
+		<div class="grid_panel">
+			<div class="grid_settings">
+				Edition mode:
+				<button class="btn" id="editionMode" onclick="switchEditionMode();">Hover</button>
+				Random color:
+				<button class="btn" id="randomColor" onclick="switchColorMode()">Yes</button>
+				<label id="colorLabel" style="display: none;">
+					Color:
+					<input type="color" id="color">
+				</label>
+				<button class="btn" id="resizeBtn">Resize the grid</button>
+			</div>
+			<button class="reset_grid">Reset the grid</button>
 		</div>
 	</main>
 </body>
