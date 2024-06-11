@@ -25,8 +25,17 @@ function createGrid(height, width, cellHeight, cellWidth){
 	}
 }
 
+function generateRandomColor(){
+	let r = Math.floor(Math.random()*256);
+	let g = Math.floor(Math.random()*256);
+	let b = Math.floor(Math.random()*256);
+	return "rgb(" + r + "," + g + "," + b + ")";
+}
+
 function hoverTrail(event) {
-	event.target.style.backgroundColor = "blue";
+	let color = generateRandomColor();
+	console.log(color);
+	event.target.style.backgroundColor =`${color}`;
 }
 
 
