@@ -20,7 +20,11 @@
     create the missing html core struct to the page
     style added html
 
+3.1 - Add a modal for enhanced UX while resizing the grid HTML CS JS
 
+3.2 - Add a div explaining all the interactions with the grid - HTML CSS JS
+
+3.3 - Add a feature that react differently when interacting with an already colored cell - JS
 4 - BONUS
     create a "About" page and trigger it by js
     Add personal info and link to github and placeholder for future blog inside

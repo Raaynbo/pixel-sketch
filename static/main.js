@@ -4,6 +4,7 @@ const cellH = "20px" ;
 const colorBoolBtn = document.querySelector("#randomColor");
 const editionBtn = document.querySelector("#editionMode");
 const colorParam = document.querySelector("#colorLabel");
+const resizeBtn = document.querySelector("#resizeBtn");
 createGrid(16,16, cellH, cellH);
 const resetBtn = document.querySelector(".reset_grid");
 resetBtn.addEventListener("click", () => {
@@ -13,8 +14,26 @@ resetBtn.addEventListener("click", () => {
 	});
 });
 
-const gridCells = document.querySelectorAll(".cell");
-gridCells.forEach((cell) => {
+
+resizeBtn.addEventListener("click", (e) => {
+	let newSize = 0;
+	let keepLooping = true;
+	while (keepLooping){
+		newSize =Number(prompt("How many cells you want in your grid? (Ex:  64 for a 64x64 grid, max 64"));
+		if (newSize >=0 || newSize < 64){
+			keepLooping = false;
+
+		} 
+	}
+	const gridContainer = document.querySelector(".grid_container");
+	while(gridContainer.firstChild){
+		gridContainer.removeChild(gridContainer.lastChild);
+	}
+	createGrid(newSize, newSize,cellH, cellH);
+
+});
+
+function setEventOnCells(cell){
 	cell.addEventListener("mouseover", (e) => {
 		if (editionMode == false){
 			if(colorMode === 0){
@@ -35,7 +54,7 @@ gridCells.forEach((cell) => {
 			}
 		}
 	});
-});
+}
 
 function createGrid(height, width, cellHeight, cellWidth){
 	const gridContainer = document.querySelector(".grid_container");
@@ -52,6 +71,7 @@ function createGrid(height, width, cellHeight, cellWidth){
 			cell.id = baseTagId + i + "-" + j;
 			cell.classList.add("cell");
 			row.appendChild(cell);
+			setEventOnCells(cell);
 		}
 	}
 }

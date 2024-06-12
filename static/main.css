@@ -8,6 +8,7 @@ body{
 
 .grid_container {
 	padding:10px;
+	margin:0 auto;
 }
 
 .cell {
@@ -22,6 +23,7 @@ body{
 main {
 	height:90vh;
 	display:flex;
+	flex-direction:column;
 }
 
 header {
@@ -58,5 +60,15 @@ header span {
 
 .grid_settings {
 	outline: solid 1px black;
+	display:flex;
+	flex-direction: column;
+	gap:8px;
+	width:230px;
+	align-items:center;
+	margin:0 auto;
 	padding:8px;
+}
+
+.grid_settings > button {
+	width:90px;
 }
