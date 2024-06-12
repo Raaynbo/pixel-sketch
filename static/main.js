@@ -9,6 +9,9 @@ const spanClose = document.querySelector(".close");
 createGrid(16,16, cellH, cellH);
 const resetBtn = document.querySelector(".reset_grid");
 const resizeModal = document.querySelector("#resize_modal");
+const divResizeDemo = document.querySelector("#resize_demo");
+const cellInputDimension = document.querySelector("#cellInputDimension");
+
 resetBtn.addEventListener("click", () => {
 	const allGridCell = document.querySelectorAll(".cell");
 	allGridCell.forEach((cell) => {
@@ -23,6 +26,20 @@ spanClose.addEventListener("click", () => {
 resizeBtn.addEventListener("click", (e) => {
 	resizeModal.style.display = "block";
 });
+
+cellInputDimension.addEventListener("keyup", (e) => {
+	let demoDiv = document.querySelector("#demo_div");
+	if (Number(cellInputDimension.value > 100)){
+		cellInputDimension.value = 100;
+	} else if (Number(cellInputDimension.value < 5)){
+		cellInputDimension.value = 5;
+	}
+	let dim = Number(cellInputDimension.value) + "px";
+	demoDiv.style.outline = "solid 1px black";
+	demoDiv.style.width = cellInputDimension.value + "px";
+	demoDiv.style.height = cellInputDimension.value + "px";
+});
+
 resizeBtn.addEventListener("clicki", (e) => {
 	let newSize = 0;
 	let keepLooping = true;

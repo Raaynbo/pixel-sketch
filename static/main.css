@@ -89,12 +89,34 @@ header span {
 	margin: 15% auto;
 	width:80%;
 	background-color:white;
+	height:300px;
+	display:flex;
+	flex-direction:column;
+	gap:20px;
 	padding:20px;
 }
 
 .modal_title {
 	display:flex;
 	justify-content:space-between;
+}
+
+.modal_info{
+	display:flex;
+	gap:8px;
+	justify-content:space-evenly;
+}
+
+#resize_demo{
+	height:100px;
+	width:100px;
+}
+
+#demo_div{
+	width:20px;
+	height:20px;
+	margin:5px auto;
+	outline:solid 1px black;
 }
 
 .close{
