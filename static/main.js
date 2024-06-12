@@ -5,8 +5,10 @@ const colorBoolBtn = document.querySelector("#randomColor");
 const editionBtn = document.querySelector("#editionMode");
 const colorParam = document.querySelector("#colorLabel");
 const resizeBtn = document.querySelector("#resizeBtn");
+const spanClose = document.querySelector(".close");
 createGrid(16,16, cellH, cellH);
 const resetBtn = document.querySelector(".reset_grid");
+const resizeModal = document.querySelector("#resize_modal");
 resetBtn.addEventListener("click", () => {
 	const allGridCell = document.querySelectorAll(".cell");
 	allGridCell.forEach((cell) => {
@@ -14,8 +16,14 @@ resetBtn.addEventListener("click", () => {
 	});
 });
 
+spanClose.addEventListener("click", () => {
+	resizeModal.style.display = "none";
+});
 
 resizeBtn.addEventListener("click", (e) => {
+	resizeModal.style.display = "block";
+});
+resizeBtn.addEventListener("clicki", (e) => {
 	let newSize = 0;
 	let keepLooping = true;
 	while (keepLooping){

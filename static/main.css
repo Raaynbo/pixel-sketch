@@ -72,3 +72,32 @@ header span {
 .grid_settings > button {
 	width:90px;
 }
+
+.modal{
+	display:none;
+	position:fixed;
+	z-index:1;
+	left:0;
+	top:0;
+	width:100%;
+	transition:01s ease-in;
+	height:100%;
+	background-color:rgba(0,0,0,0.4);
+}
+
+.modal_content {
+	margin: 15% auto;
+	width:80%;
+	background-color:white;
+	padding:20px;
+}
+
+.modal_title {
+	display:flex;
+	justify-content:space-between;
+}
+
+.close{
+	cursor:pointer;
+}
+
