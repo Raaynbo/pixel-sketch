@@ -2,6 +2,9 @@
 let colorMode = 0; // 0 = random - 1 = defined color
 let editionMode = 0; //0 = hover - 1 = click
 const gridSize = 980 ; // = base size (width and height)
+let clientWidth = document.querySelector("body").clientWidth;
+console.log(clientWidth);
+
 
 // DOM element
 const colorBoolBtn = document.querySelector("#randomColor");
@@ -41,15 +44,17 @@ resizeBtn.addEventListener("click", (e) => {
 //display the demo cell inside the resize modal
 cellInputDimension.addEventListener("keyup", (e) => {
 	let demoDiv = document.querySelector("#demo_div");
-	if (Number(cellInputDimension.value > 100)){
-		cellInputDimension.value = 100;
-	} else if (Number(cellInputDimension.value < 5)){
-		cellInputDimension.value = 5;
+		if (cellInputDimension.value.length >2){
+		if (cellInputDimension.value > clientWidth){
+			cellInputDimension.value = clientWidth-50;
+		} else if (cellInputDimension.value < 100){
+			cellInputDimension.value = 100;
+		}
+		let dim = Number(cellInputDimension.value) + "px";
+		demoDiv.style.outline = "solid 1px black";
+		demoDiv.style.width = cellInputDimension.value + "px";
+		demoDiv.style.height = cellInputDimension.value + "px";
 	}
-	let dim = Number(cellInputDimension.value) + "px";
-	demoDiv.style.outline = "solid 1px black";
-	demoDiv.style.width = cellInputDimension.value + "px";
-	demoDiv.style.height = cellInputDimension.value + "px";
 });
 
 
@@ -112,7 +117,7 @@ function createGrid(cellNb, gridDim){
 			const baseTagId = "cell-";
 			cell.style.width = cellDim;
 			cell.style.height = cellDim;
-			cell.id = baseTagId + i + "-" + j;
+			cell.id = baseTagId + j + "-" + i;
 			cell.classList.add("cell");
 			row.appendChild(cell);
 			setEventOnCells(cell);

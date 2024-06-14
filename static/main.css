@@ -87,7 +87,7 @@ header span {
 
 .modal_content {
 	margin: 15% auto;
-	width:80%;
+	width:97%;
 	background-color:white;
 	height:300px;
 	display:flex;
@@ -109,7 +109,6 @@ header span {
 
 #resize_demo{
 	height:100px;
-	width:100px;
 }
 
 #demo_div{
