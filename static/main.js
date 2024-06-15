@@ -1,7 +1,7 @@
 // variable
 let colorMode = 0; // 0 = random - 1 = defined color
 let editionMode = 0; //0 = hover - 1 = click
-const gridSize = 980 ; // = base size (width and height)
+const gridSize = 950 ; // = base size (width and height)
 let clientWidth = document.querySelector("body").clientWidth;
 console.log(clientWidth);
 
@@ -14,11 +14,16 @@ const resizeBtn = document.querySelector("#resizeBtn");
 const spanClose = document.querySelector(".close");
 const resetBtn = document.querySelector(".reset_grid");
 const resizeModal = document.querySelector("#resize_modal");
+const aboutModal = document.querySelector("#about_modal");
+const aboutLink = document.querySelector("#about");
 const divResizeDemo = document.querySelector("#resize_demo");
-const cellInputDimension = document.querySelector("#cellInputDimension");
+const cellInputDimension = document.querySelector("#cellNumber");
+const gridDimension = document.querySelector("#gridDimension");
+const gridContainer = document.querySelector(".grid_container");
+const newGridBtn = document.querySelector("#newGridBtn");
 
 // base grid creation
-createGrid(16, gridSize);
+createGrid(16, gridSize, gridContainer, true);
 
 // creation of all the event attached to DOM element
 // ----------------------------------------------------
@@ -31,50 +36,28 @@ resetBtn.addEventListener("click", () => {
 	});
 });
 
-//close the resize modal 
-spanClose.addEventListener("click", () => {
-	resizeModal.style.display = "none";
-});
-
 //display the resize modal
-resizeBtn.addEventListener("click", (e) => {
-	resizeModal.style.display = "block";
-});
+resizeBtn.addEventListener("click", () =>display(resizeModal));
+aboutLink.addEventListener("click", () =>display(aboutModal));
 
 //display the demo cell inside the resize modal
 cellInputDimension.addEventListener("keyup", (e) => {
 	let demoDiv = document.querySelector("#demo_div");
-		if (cellInputDimension.value.length >2){
-		if (cellInputDimension.value > clientWidth){
-			cellInputDimension.value = clientWidth-50;
-		} else if (cellInputDimension.value < 100){
+	if (cellInputDimension.value != ""){
+		if (cellInputDimension.value > 100){
 			cellInputDimension.value = 100;
+		} else if (cellInputDimension.value < 2  ){
+			cellInputDimension.value = 2;
 		}
-		let dim = Number(cellInputDimension.value) + "px";
-		demoDiv.style.outline = "solid 1px black";
-		demoDiv.style.width = cellInputDimension.value + "px";
-		demoDiv.style.height = cellInputDimension.value + "px";
+		console.log("gridDimension" + gridDimension.value);
+		while(demoDiv.firstChild){
+			demoDiv.removeChild(demoDiv.lastChild);
+		}
+		createGrid(cellInputDimension.value, gridDimension.value, demoDiv, false); 
 	}
 });
 
 
-resizeBtn.addEventListener("clicki", (e) => {
-	let newSize = 0;
-	let keepLooping = true;
-	while (keepLooping){
-		newSize =Number(prompt("How many cells you want in your grid? (Ex:  64 for a 64x64 grid, max 64"));
-		if (newSize >=0 || newSize < 64){
-			keepLooping = false;
-
-		} 
-	}
-	const gridContainer = document.querySelector(".grid_container");
-	while(gridContainer.firstChild){
-		gridContainer.removeChild(gridContainer.lastChild);
-	}
-	createGrid(newSize,cellH);
-
-});
 
 // ------------------ Function definition --------------
 // add Events to a cell 
@@ -101,17 +84,16 @@ function setEventOnCells(cell){
 	});
 }
 
-// create a grid of height*width cells, each cell have a width and height of cellDim
-function createGrid(cellNb, gridDim){
-	const gridContainer = document.querySelector(".grid_container");
-	gridContainer.style.width = gridDim + "px";
-	gridContainer.style.height = gridDim + "px";
+// create a grid of height*width cells, each cell have a width and height of cellDim, specify a DOM target to create the grid inside. 
+function createGrid(cellNb, gridDim, target, preview){
+	target.style.width = gridDim + "px";
+	target.style.height = gridDim + "px";
 	cellDim = (gridDim/cellNb) + "px";
 	for ( let j = 1; j <= cellNb; ++j){
 		let row = document.createElement('div');
 		row.classList.add("row"); 
 		row.style.height = cellDim;
-		gridContainer.appendChild(row);
+		target.appendChild(row);
 		for (let i = 1; i <= cellNb; ++i){
 			let cell = document.createElement("div");
 			const baseTagId = "cell-";
@@ -120,7 +102,9 @@ function createGrid(cellNb, gridDim){
 			cell.id = baseTagId + j + "-" + i;
 			cell.classList.add("cell");
 			row.appendChild(cell);
+			if (preview){
 			setEventOnCells(cell);
+			}
 		}
 	}
 }
@@ -161,5 +145,24 @@ function switchEditionMode(){
 		
 		editionMode = 0;
 		editionBtn.textContent = "Hover to modify"
+	}
+}
+
+function display(target){
+	target.style.display = "block";
+}
+
+function closeModal(target){
+	let trgt = document.querySelector(target);
+	trgt.style.display = "none";
+}
+
+function newGrid(){
+	if (cellInputDimension != ""){
+		while(gridContainer.firstChild){
+			gridContainer.removeChild(gridContainer.lastChild);
+		}
+		createGrid(cellInputDimension.value, gridDimension.value, gridContainer, true);
+		resizeModal.style.display = "none";
 	}
 }

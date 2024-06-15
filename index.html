@@ -11,7 +11,7 @@
 <body>
 	<header>
 		<span class="title">Pixel Sketch</span>
-		<span class="about"> About</span>
+		<span class="about" id="about"> About</span>
 	</header>
 	<main>
 		<div class="grid_container">
@@ -33,34 +33,96 @@
 		<div id="resize_modal" class="modal">
 			<div class="modal_content">
 				<div class="modal_title">
-					RESIZE GRID PANEL
-					<span class="close">
+					<h2 class="title"> RESIZE GRID PANEL</h2>
+					<span class="close" onclick="closeModal('#resize_modal')">
 						&times;
 					</span>
 				</div>
 				<div class="modal_info">
 					<div id="resize_demo">
-						Cell exemple
+						<h3 class="title">GRID PREVIEW</h3>
 						<br>
 						<div id="demo_div">
 						</div>
 					</div>
-					<div>
-						CELL PARAM
+					<div class="modal_setting">
+						<h3 class="title">GRID SETTINGS </h3>
 						<label>
-							grid dimension in pixel
+							grid dimension in pixel :
 							<select id="gridDimension">
-								<option value="480">480px</option>
-								<option value="580">580px</option>
-								<option value="780">780px</option>
-								<option value="980">980px</option>
+								<option value="450" selected>450px</option>
+								<option value="550">550px</option>
+								<option value="750">750px</option>
+								<option value="950">950px</option>
 							</select>
 						</label>
 						<label>
-							Grid dimension (cells)
+							Grid dimension (cells) :
 							<input type="number" id="cellNumber">
 						</label>
+						<h5 class="attention title">ATTENTION: By generating a new grid you will
+							erase the
+							actual one and
+							all your work.</h5>
 					</div>
+				</div>
+				<button onclick="newGrid();" id="newGridBtn">Generate </button>
+			</div>
+		</div>
+		<div id="about_modal" class="modal">
+			<div class="modal_content">
+				<div class="modal_title">
+					<h2 class="title"> ABOUT PAGE</h2>
+					<span class="close" onclick="closeModal('#about_modal')">
+						&times;
+					</span>
+				</div>
+				<div class="modal_setting" id="about_text">
+					<p>
+						Hello and welcome on Pixel Sketch, here is a grid to
+						make
+						pixel art.
+					</p>
+					<hr>
+					<p>
+						I'm Rayan "Raaynbo" Boudjema, a 27 years old data analyst willing to
+						reconvert
+						as
+						a web-dev and I decided to learn and improve my dev skills
+						by creating.
+						I discovered <a href="http://www.theodinproject.com"> The Odin Project
+						</a> and
+						<a href="https://wwww.appacademy.io"> AppAcademy</a> in <a
+							href="https://github.com/P1xt/p1xt-guides"> this guide</a>. I
+						decided to
+						follow both of these ressources to have as much practice as possible.
+
+					</p>
+					<hr>
+					<p>
+						Here is my version of the project <a
+							href="https://www.theodinproject.com/lessons/foundations-etch-a-sketch">
+							Etch a Sketch</a> of the foundation path
+						of The Odin Project.
+
+					</p>
+
+					<br>
+					</p>
+					<em>This project won't have any other update.</em>
+
+					<ul class="socials_link">
+						<a href="#">
+							<li>Github</li>
+						</a>
+						<a href="#">
+							<li>Twitter </li>
+						</a>
+						<a href="#">
+							<li>Blog </li>
+						</a>
+					</ul>
+
 				</div>
 			</div>
 		</div>
