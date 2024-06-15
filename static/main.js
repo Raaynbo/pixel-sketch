@@ -11,7 +11,6 @@ const colorBoolBtn = document.querySelector("#randomColor");
 const editionBtn = document.querySelector("#editionMode");
 const colorParam = document.querySelector("#colorLabel");
 const resizeBtn = document.querySelector("#resizeBtn");
-const spanClose = document.querySelector(".close");
 const resetBtn = document.querySelector(".reset_grid");
 const resizeModal = document.querySelector("#resize_modal");
 const aboutModal = document.querySelector("#about_modal");
